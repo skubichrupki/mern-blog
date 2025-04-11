@@ -24,3 +24,27 @@ Free - 512mb storage
 Cluster0
 username mskupinski2404
 connection string and password in .env file. create it locally
+
+collections vs tables
+in each collection we have documents
+collections:
+- posts
+- users
+collection: posts
+    - post 1 doc
+    - post 2 doc
+collection: users
+    - user 1 doc
+    - user 2 doc
+
+for that we create a model using mongoose package that interacts with mongo db
+models
+models have schemas
+
+sample post /api/posts payload:
+{
+    "title": "test title",
+    "description": "test description"
+}
+
+NEED TO DOWNLAOD POSTMAN DESKTOP AGENT TO TEST API LOCALLY
