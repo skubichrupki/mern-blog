@@ -37,13 +37,29 @@ app.post('/api/posts', async (req, res) => {
     try {
         await newPost.save();
         // 201 = created successful, return json with model data.
-        res.status(201).json({ success: true, data: newPost});
+        res.status(201).json({ success: true, message: "post added", payload: newPost});
     }
     catch (error) {
         // internal server error
         console.error(error.message);
-        res.status(500).json({ success: false, message: "500"});
+        res.status(500).json({ success: false, message: "post not added"});
     }
 });
+
+// :id means id is dynamic
+// async (req, res) => {} is called controller function
+app.delete('/api/posts/:id', async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    // now check for id in the Mongo DB
+    try {
+        await postModel.findByIdAndDelete(id);
+        res.status(200).json({success: true, message: "post deleted"});
+    }
+    catch (error) {
+        console.error(error.message);
+        res.status(500).json({success: false, message: "post not deleted"});
+    }
+}) 
 
 // to test post api, use postman app
