@@ -16,12 +16,15 @@ app.use(express.json());
 
 // path, (request, response)
 app.get('/', (req, res) => {
-    res.send("backend server in node js using express.js library - /")
+    res.send("200 /");
+    console.log('GET request on /');
 })
 
 // path, (request, response)
 app.get('/api/posts', (req, res) => {
-    res.send("backend server in node js using express.js library - /posts")
+    res.send("200 /posts")
+    const now = new Date();
+    console.log(`GET request on /api/posts on ${now}`);
 })
 
 app.post('/api/posts', async (req, res) => {
