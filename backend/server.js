@@ -21,10 +21,21 @@ app.get('/', (req, res) => {
 })
 
 // path, (request, response)
-app.get('/api/posts', (req, res) => {
-    res.send("200 /posts")
-    const now = new Date();
-    console.log(`GET request on /api/posts on ${now}`);
+app.get('/api/posts', async (req, res) => {
+
+    try {
+        //fetch all the posts in db
+        const posts = await postModel.find({});
+        // send posts back to backend
+        res.status(200).json({success: true, data: posts});
+
+        const now = new Date();
+        console.log(`GET request on /api/posts on ${now}`);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false, message: "posts not fetched"})
+    }
 })
 
 app.post('/api/posts', async (req, res) => {
@@ -50,7 +61,6 @@ app.post('/api/posts', async (req, res) => {
 // async (req, res) => {} is called controller function
 app.delete('/api/posts/:id', async (req, res) => {
     const id = req.params.id;
-    console.log(id);
     // now check for id in the Mongo DB
     try {
         await postModel.findByIdAndDelete(id);
@@ -60,6 +70,18 @@ app.delete('/api/posts/:id', async (req, res) => {
         console.error(error.message);
         res.status(500).json({success: false, message: "post not deleted"});
     }
-}) 
+})
 
-// to test post api, use postman app
+app.put('/api/posts/:id', async (req, res) => {
+    const id = req.params.id;
+    const post = req.body;
+    // now check for id in the Mongo DB
+    try {
+        await postModel.findByIdAndUpdate(id, post, {new: true});
+        res.status(200).json({success: true, message: "post updated"});
+    }
+    catch (error) {
+        console.error(error.message);
+        res.status(500).json({success: false, message: "post not updated"});
+    }
+})
