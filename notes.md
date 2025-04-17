@@ -48,3 +48,5 @@ sample post /api/posts payload:
 }
 
 NEED TO DOWNLAOD POSTMAN DESKTOP AGENT TO TEST API LOCALLY
+https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()
+moongose documentation
