@@ -1,82 +1,20 @@
 import express from 'express';
-import postModel from '../models/post.js';
-import mongoose from 'mongoose';
+import { getPosts, createPost, deletePost, updatePost } from '../controllers/post.controller.js';
+
+// file for api requests routing
+// the api paths are prefixed in server.js with /api/post
 
 const router = express.Router();
 
 // path, (request, response)
-router.get('/', async (req, res) => {
+router.get('/', getPosts);
 
-    try {
-        //fetch all the posts in db
-        const posts = await postModel.find({});
-        // send posts back to backend
-        res.status(200).json({success: true, data: posts});
-        //const now = new Date();
-        console.log(`GET /api/posts`);
-    }
-    catch (error) {
-        console.log(error.message);
-        res.status(500).json({success: false, message: error.message})
-    }
-});
-
-router.post('/', async (req, res) => {
-    // data sent by user
-    const post = req.body; 
-    // create new post model instance with data sent by user
-    const newPost = new postModel(post)
-
-    try {
-        await newPost.save();
-        // 201 = created successful, return json with model data.
-        let message = `post added`
-        res.status(201).json({ success: true, message: message, payload: newPost});
-    }
-    catch (error) {
-        // internal server error
-        console.error(error.message);
-        res.status(500).json({ success: false, message: error.message});
-    }
-});
+router.post('/', createPost);
 
 // :id means id is dynamic
 // async (req, res) => {} is called controller function
-router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
-    // now check for id in the Mongo DB
-    try {
-        await postModel.findByIdAndDelete(id);
-        let message = `post ${id} deleted`
-        res.status(200).json({success: true, message: message});
-    }
-    catch (error) {
-        console.error(error.message);
-        res.status(500).json({success: false, message: error.message});
-    }
-})
+router.delete('/:id', deletePost)
 
-router.put('/:id', async (req, res) => {
-    const id = req.params.id;
-    const body = req.body;
-    // now check for id in the Mongo DB
-
-    // if id type is not valid for Mongo DB
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        let message = `post ${id} not in database`;
-        res.status(400).json({success: false, message: message});
-    }
-
-    try {
-        // check Mongoose documentation for functions to interact with Mongo DB
-        await postModel.findByIdAndUpdate(id, body, {new: true});
-        let message = `post ${id} updated`
-        res.status(200).json({success: true, message: message, payload: body});
-    }
-    catch (error) {
-        console.error(error.message);
-        res.status(500).json({success: false, message: error.message});
-    }
-})
+router.put('/:id', updatePost)
 
 export default router;
