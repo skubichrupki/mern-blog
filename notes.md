@@ -1,20 +1,4 @@
-npm init -y
-npm install express mongoose dotenv
-npm i nodemon -D (dev dependency)
--- this will create dependencies and devDependencies in the package.json file
-now on new pc run: npm install in root project dir
-
-express - web framework
-mongoose - interaction with mongo db
-dotenv - access to .env environment variables
-
-backend/server.js - entry point for apis
-add "type": "module" to package.json - now server.js is read as module
-add start: node server.js to run custom script to run server,js
-
-to run backend server:
-node .\backend\server.js
-
+## db ##
 
 MongoDB
 https://cloud.mongodb.com/
@@ -37,6 +21,25 @@ collection: users
     - user 1 doc
     - user 2 doc
 
+## backend ##
+
+npm init -y
+npm install express mongoose dotenv
+npm i nodemon -D (dev dependency)
+-- this will create dependencies and devDependencies in the package.json file
+now on new pc run: npm install in root project dir
+
+express - web framework
+mongoose - interaction with mongo db
+dotenv - access to .env environment variables
+
+backend/server.js - entry point for apis
+add "type": "module" to package.json - now server.js is read as module
+add start: node server.js to run custom script to run server,js
+
+to run backend server:
+node .\backend\server.js
+
 for that we create a model using mongoose package that interacts with mongo db
 models
 models have schemas
@@ -50,3 +53,18 @@ sample post /api/posts payload:
 NEED TO DOWNLAOD POSTMAN DESKTOP AGENT TO TEST API LOCALLY
 https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()
 moongose documentation
+
+On production for example on Render/Heroku
+it creates it own .env file
+you set MONGO_URI, JWT_SECRET etc
+but they set the port
+so const port = process.env.PORT || 5000; use their own port and 5000 if its not defined, like on development
+
+## frontend ##
+
+frontend will be created using react + vite
+cd frontend
+npm create vite@latest .
+npm install
+
+then to chakra UI 57:40

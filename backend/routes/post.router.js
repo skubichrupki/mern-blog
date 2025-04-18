@@ -6,14 +6,14 @@ import { getPosts, createPost, deletePost, updatePost } from '../controllers/pos
 // :id means id is dynamic
 // async (req, res) => {} is called controller function
 
-const router = express.Router();
+const postsRouter = express.Router();
 
-router.get('/', getPosts);
+postsRouter.get('/', getPosts);
 
-router.post('/', createPost);
+postsRouter.post('/', createPost);
 
-router.delete('/:id', deletePost)
+postsRouter.delete('/:id', deletePost)
 
-router.put('/:id', updatePost)
+postsRouter.put('/:id', updatePost)
 
-export default router;
+export default postsRouter;

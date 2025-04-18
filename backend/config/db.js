@@ -2,14 +2,16 @@ import mongoose from "mongoose"
 import dotenv from 'dotenv'
 
 dotenv.config(); // import data from dotenv
-let mongo_uri = process.env.MONGO_URI; // used to connect to MongoDB database
+
+// mongo_uri is a key used to connect to MongoDB database using mongoose
+let mongo_uri = process.env.MONGO_URI; 
 
 // connect to MongoDB
 export const connectDB = async () => {
     try {
         // console.log(`mongo uri: ${mongo_uri}`)
         const conn = await mongoose.connect(mongo_uri)
-        console.log(`mongo db connected: ${conn.connection.host}`)
+        console.log(`MongoDB connected with mongo_URI: ${conn.connection.host}`)
     }
     catch(error) {
         console.error(`error: ${error.message}`);

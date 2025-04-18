@@ -1,7 +1,7 @@
 import postModel from "../models/post.js";
 import mongoose from "mongoose";
 
-// file with controller functions for api endpoints
+// file with controller functions for API endpoints
 
 export const getPosts = async (req, res) => {
     try {
