@@ -21,6 +21,10 @@ collection: users
     - user 1 doc
     - user 2 doc
 
+create username and password in mongo db database access
+MONGO_URI=mongodb+srv://username:password@cluster0.k8mcgx3.mongodb.net/posts?retryWrites=true&w=majority&appName=Cluster0
+
+
 ## backend ##
 
 npm init -y
@@ -68,3 +72,5 @@ npm create vite@latest .
 npm install
 
 then to chakra UI 57:40
+npm install @mantine/core @mantine/hooks @mantine/form @mantine/tiptap @tiptap/pm @tiptap/react @tiptap/extension-link @tiptap/starter-kit @mantine/dropzone @mantine/nprogress
+npm install --save-dev postcss postcss-preset-mantine postcss-simple-vars
