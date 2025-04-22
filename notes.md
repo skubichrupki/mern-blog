@@ -74,3 +74,9 @@ npm install
 then to chakra UI 57:40
 npm install @mantine/core @mantine/hooks @mantine/form @mantine/tiptap @tiptap/pm @tiptap/react @tiptap/extension-link @tiptap/starter-kit @mantine/dropzone @mantine/nprogress
 npm install --save-dev postcss postcss-preset-mantine postcss-simple-vars
+npm install react-router-dom
+
+ES7+ vscode extenstion for react snippets
+https://github.com/r5n-labs/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
+rafce for react export function
+ctrl + w to close the page in vscode

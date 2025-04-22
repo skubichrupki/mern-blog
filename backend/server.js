@@ -17,6 +17,6 @@ app.use('/api/posts', postsRouter);
 
 // server is listening for REST API Requests
 app.listen(port, () => {
-    console.log(`Express server is running on: http://localhost:${port}`);
+    console.log(`\nExpress server is running on: http://localhost:${port}/api/posts`);
     connectDB();
 });
