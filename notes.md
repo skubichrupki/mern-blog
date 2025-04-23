@@ -80,3 +80,5 @@ ES7+ vscode extenstion for react snippets
 https://github.com/r5n-labs/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
 rafce for react export function
 ctrl + w to close the page in vscode
+
+npm install react-icons
